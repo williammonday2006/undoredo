@@ -9,3 +9,7 @@ Having the Command object responsible for its own undo logic makes EditorApp sim
 # Phase 3
 
 A Stack is ideal for undo because it uses Last-In-First-Out behavior. The most recent command is placed on top of the stack, so it can be undone first. A Queue would undo commands in the order they were added instead, which would not match the normal behavior of an undo system.
+
+# Phase 4
+
+InsertCommand stores the text being inserted and its position so it knows what to remove during undo. DeleteCommand needs to store the text that was removed because the original text no longer exists in the editor after the deletion. Without saving the previous text, DeleteCommand would not know what to put back.
