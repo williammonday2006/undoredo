@@ -6,7 +6,9 @@ public class Main {
         Command command = new InsertCommand(editor, "Hello World!", 0);
 
         app.executeCommand(command);
+        System.out.println(editor.getText());
 
+        app.undo();
         System.out.println(editor.getText());
     }
 }
