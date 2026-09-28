@@ -1,15 +1,18 @@
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 public class EditorApp {
-    private Command lastCommand;
+    private Deque<Command> history = new ArrayDeque<>();
 
     public void executeCommand(Command command) {
         command.execute();
-        lastCommand = command;
+        history.push(command);
     }
 
     public void undo() {
-        if (lastCommand != null) {
-            lastCommand.undo();
-            lastCommand = null;
+        if (!history.isEmpty()) {
+            Command command = history.pop();
+            command.undo();
         }
     }
 }

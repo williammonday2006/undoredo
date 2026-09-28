@@ -3,9 +3,16 @@ public class Main {
         TextEditor editor = new TextEditor();
         EditorApp app = new EditorApp();
 
-        Command command = new InsertCommand(editor, "Hello World!", 0);
+        app.executeCommand(new InsertCommand(editor, "Hello", 0));
+        app.executeCommand(new InsertCommand(editor, " World", 5));
+        app.executeCommand(new InsertCommand(editor, "!", 11));
 
-        app.executeCommand(command);
+        System.out.println(editor.getText());
+
+        app.undo();
+        System.out.println(editor.getText());
+
+        app.undo();
         System.out.println(editor.getText());
 
         app.undo();
