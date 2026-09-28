@@ -13,3 +13,7 @@ A Stack is ideal for undo because it uses Last-In-First-Out behavior. The most r
 # Phase 4
 
 InsertCommand stores the text being inserted and its position so it knows what to remove during undo. DeleteCommand needs to store the text that was removed because the original text no longer exists in the editor after the deletion. Without saving the previous text, DeleteCommand would not know what to put back.
+
+# Phase 5
+
+MacroCommand demonstrates the Composite Pattern because it groups multiple Command objects together and treats them as one Command. EditorApp does not need to know that the command contains several operations. It can execute and undo the entire sequence using the same execute() and undo() methods as any other command.

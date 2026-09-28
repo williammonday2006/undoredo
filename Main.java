@@ -1,15 +1,22 @@
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
         TextEditor editor = new TextEditor();
         EditorApp app = new EditorApp();
 
-        app.executeCommand(new InsertCommand(editor, "Hello World!", 0));
-        System.out.println(editor.getText());
+        MacroCommand template = new MacroCommand(Arrays.asList(
+            new InsertCommand(editor, "=== HEADER ===", 0),
+            new InsertCommand(editor, "\n", 15),
+            new InsertCommand(editor, "=== FOOTER ===", 16)
+        ));
 
-        app.executeCommand(new DeleteCommand(editor, 5, 6));
+        app.executeCommand(template);
+
         System.out.println(editor.getText());
 
         app.undo();
+
         System.out.println(editor.getText());
     }
 }
